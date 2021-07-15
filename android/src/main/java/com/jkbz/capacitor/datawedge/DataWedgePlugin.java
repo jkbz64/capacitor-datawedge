@@ -10,8 +10,10 @@ import com.getcapacitor.annotation.CapacitorPlugin;
 import androidx.activity.result.ActivityResult;
 
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+
 
 @CapacitorPlugin(name = "DataWedge")
 public class DataWedgePlugin extends Plugin {
@@ -21,9 +23,10 @@ public class DataWedgePlugin extends Plugin {
     @PluginMethod
     public void enable(PluginCall call) {
         Intent intent = implementation.enable();
+        Context context = getBridge().getContext();
 
         try {
-            this.startActivityForResult(call, intent, "handleDataWedgeState");
+            context.sendBroadcast(intent);
         } catch (ActivityNotFoundException e) {
             call.reject("DataWedge is not installed or not running");
         }
@@ -31,9 +34,10 @@ public class DataWedgePlugin extends Plugin {
     @PluginMethod
     public void disable(PluginCall call) {
         Intent intent = implementation.disable();
+        Context context = getBridge().getContext();
 
         try {
-            this.startActivityForResult(call, intent, "handleDataWedgeState");
+            context.sendBroadcast(intent);
         } catch (ActivityNotFoundException e) {
             call.reject("DataWedge is not installed or not running");
         }
@@ -42,9 +46,10 @@ public class DataWedgePlugin extends Plugin {
     @PluginMethod
     public void enableScanner(PluginCall call) {
         Intent intent = implementation.enableScanner();
+        Context context = getBridge().getContext();
 
         try {
-            this.startActivityForResult(call, intent, "handleDataWedgeState");
+            context.sendBroadcast(intent);
         } catch (ActivityNotFoundException e) {
             call.reject("DataWedge is not installed or not running");
         }
@@ -52,19 +57,12 @@ public class DataWedgePlugin extends Plugin {
     @PluginMethod
     public void disableScanner(PluginCall call) {
         Intent intent = implementation.disableScanner();
+        Context context = getBridge().getContext();
 
         try {
-            this.startActivityForResult(call, intent, "handleDataWedgeState");
+            context.sendBroadcast(intent);
         } catch (ActivityNotFoundException e) {
             call.reject("DataWedge is not installed or not running");
         }
-    }
-
-    @ActivityCallback
-    private void handleDataWedgeState(PluginCall call, ActivityResult result) {
-        if (call == null)
-            return;
-
-        call.resolve();
     }
 }
