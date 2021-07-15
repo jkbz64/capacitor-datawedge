@@ -9,11 +9,10 @@
   "files": [
     "android/src/main/",
     "android/build.gradle",
-    "dist/",
-    "CapacitorDatawedge.podspec"
+    "dist/"
   ],
   "author": "jkbz64",
-  "license": "MIT",
+  "license": "BSD3-3-Clause",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jkbz64/capacitor-datawedge.git"
