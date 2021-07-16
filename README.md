@@ -13,54 +13,78 @@ npx cap sync
 
 <docgen-index>
 
-- [`enable()`](#enable)
-- [`disable()`](#disable)
-- [`enableScanner()`](#enablescanner)
-- [`disableScanner()`](#disablescanner)
+* [`enable()`](#enable)
+* [`disable()`](#disable)
+* [`enableScanner()`](#enablescanner)
+* [`disableScanner()`](#disablescanner)
 
 </docgen-index>
 
+Every broadcasted intent assumes `com.symbol.datawedge.api` package as default.
+
+Package name can be changed by modyfing `DATAWEDGE_PACKAGE` variable [here](android/src/main/java/com/jkbz/capacitor/datawedge/DataWedge.java)
+
 <docgen-api>
+<!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
 
 ### enable()
 
 ```typescript
-enable() => any
+enable() => Promise<void>
 ```
 
-**Returns:** <code>any</code>
+Enables DataWedge
 
----
+Broadcasts intent action with `.ENABLE_DATAWEDGE` extra set to `true`
+
+**Since:** 0.0.3
+
+--------------------
+
 
 ### disable()
 
 ```typescript
-disable() => any
+disable() => Promise<void>
 ```
 
-**Returns:** <code>any</code>
+Disables DataWedge
 
----
+Broadcasts intent action with `.ENABLE_DATAWEDGE` extra set to `false`
+
+**Since:** 0.0.3
+
+--------------------
+
 
 ### enableScanner()
 
 ```typescript
-enableScanner() => any
+enableScanner() => Promise<void>
 ```
 
-**Returns:** <code>any</code>
+Enables physical scanner
 
----
+Broadcasts intent action with `.SCANNER_INPUT_PLUGIN` extra set to `ENABLE_PLUGIN`
+
+**Since:** 0.0.3
+
+--------------------
+
 
 ### disableScanner()
 
 ```typescript
-disableScanner() => any
+disableScanner() => Promise<void>
 ```
 
-**Returns:** <code>any</code>
+Disables physical scanner
 
----
+Broadcasts intent action with `.SCANNER_INPUT_PLUGIN` extra set to `DISABLE_PLUGIN`
+
+**Since:** 0.0.3
+
+--------------------
 
 </docgen-api>
 
