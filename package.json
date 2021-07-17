@@ -1,6 +1,6 @@
 {
   "name": "capacitor-datawedge",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "DataWedge plugin for capacitor",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
