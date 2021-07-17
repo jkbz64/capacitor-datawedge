@@ -17,6 +17,9 @@ npx cap sync
 * [`disable()`](#disable)
 * [`enableScanner()`](#enablescanner)
 * [`disableScanner()`](#disablescanner)
+* [`addListener('scan', ...)`](#addlistenerscan-)
+* [Interfaces](#interfaces)
+* [Type Aliases](#type-aliases)
 
 </docgen-index>
 
@@ -85,6 +88,53 @@ Broadcasts intent action with `.SCANNER_INPUT_PLUGIN` extra set to `DISABLE_PLUG
 **Since:** 0.0.3
 
 --------------------
+
+
+### addListener('scan', ...)
+
+```typescript
+addListener(eventName: 'scan', listenerFunc: ScanListener) => Promise<PluginListenerHandle> & PluginListenerHandle
+```
+
+Listen for successful barcode readings
+
+***Notice:*** Requires intent action to be set to "com.capacitor.datawedge.RESULT.ACTION" in current DataWedge profile (it may change in the future)
+
+| Param              | Type                                                  |
+| ------------------ | ----------------------------------------------------- |
+| **`eventName`**    | <code>'scan'</code>                                   |
+| **`listenerFunc`** | <code><a href="#scanlistener">ScanListener</a></code> |
+
+**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
+
+**Since:** 0.1.0
+
+--------------------
+
+
+### Interfaces
+
+
+#### PluginListenerHandle
+
+| Prop         | Type                                      |
+| ------------ | ----------------------------------------- |
+| **`remove`** | <code>() =&gt; Promise&lt;void&gt;</code> |
+
+
+#### ScanListenerEvent
+
+| Prop       | Type                | Description     | Since |
+| ---------- | ------------------- | --------------- | ----- |
+| **`data`** | <code>string</code> | Data of barcode | 0.1.0 |
+
+
+### Type Aliases
+
+
+#### ScanListener
+
+<code>(state: <a href="#scanlistenerevent">ScanListenerEvent</a>): void</code>
 
 </docgen-api>
 

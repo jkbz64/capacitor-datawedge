@@ -5,6 +5,7 @@ import android.content.Intent;
 
 public class DataWedge {
     public static final String DATAWEDGE_PACKAGE = "com.symbol.datawedge.api";
+    public static final String DATAWEDGE_INPUT_FILTER = "com.capacitor.datawedge.RESULT_ACTION";
 
     public Intent enable() {
         Intent intent = new Intent();

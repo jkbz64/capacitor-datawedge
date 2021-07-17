@@ -1,3 +1,16 @@
+import type { PluginListenerHandle } from '@capacitor/core';
+
+export interface ScanListenerEvent {
+  /**
+   * Data of barcode
+   * 
+   * @since 0.1.0
+   */
+  data: string;
+}
+
+export type ScanListener = (state: ScanListenerEvent) => void;
+
 export interface DataWedgePlugin {
 
   /**
@@ -35,4 +48,16 @@ export interface DataWedgePlugin {
    * @since 0.0.3
    */
   disableScanner(): Promise<void>;
+
+  /**
+  * Listen for successful barcode readings
+  * 
+  * ***Notice:*** Requires intent action to be set to "com.capacitor.datawedge.RESULT.ACTION" in current DataWedge profile (it may change in the future)
+  *
+  * @since 0.1.0
+  */
+  addListener(
+    eventName: 'scan',
+    listenerFunc: ScanListener
+  ): Promise<PluginListenerHandle> & PluginListenerHandle;
 }
