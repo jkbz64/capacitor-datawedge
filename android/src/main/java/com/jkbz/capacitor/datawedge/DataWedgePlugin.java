@@ -95,16 +95,16 @@ public class DataWedgePlugin extends Plugin {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
 
-            if (action.equals(DataWedge.DATAWEDGE_INPUT_FILTER)) {
-                try {
-                    String data = intent.getStringExtra("com.symbol.datawedge.data_string");
+            if (!action.equals(DataWedge.DATAWEDGE_INPUT_FILTER)) return;
 
-                    JSObject ret = new JSObject();
-                    ret.put("data", data);
+            try {
+                String data = intent.getStringExtra("com.symbol.datawedge.data_string");
 
-                    notifyListeners("scan", ret);
-                } catch(Exception e) {}
-            }
+                JSObject ret = new JSObject();
+                ret.put("data", data);
+
+                notifyListeners("scan", ret);
+            } catch(Exception e) {}
         }
     };
 }
