@@ -24,10 +24,9 @@ public class DataWedgePlugin extends Plugin {
     @PluginMethod
     public void enable(PluginCall call) {
         Intent intent = implementation.enable();
-        Context context = getBridge().getContext();
 
         try {
-            context.sendBroadcast(intent);
+            broadcast(intent);
         } catch (ActivityNotFoundException e) {
             call.reject("DataWedge is not installed or not running");
         }
@@ -35,10 +34,9 @@ public class DataWedgePlugin extends Plugin {
     @PluginMethod
     public void disable(PluginCall call) {
         Intent intent = implementation.disable();
-        Context context = getBridge().getContext();
 
         try {
-            context.sendBroadcast(intent);
+            broadcast(intent);
         } catch (ActivityNotFoundException e) {
             call.reject("DataWedge is not installed or not running");
         }
@@ -47,10 +45,9 @@ public class DataWedgePlugin extends Plugin {
     @PluginMethod
     public void enableScanner(PluginCall call) {
         Intent intent = implementation.enableScanner();
-        Context context = getBridge().getContext();
 
         try {
-            context.sendBroadcast(intent);
+            broadcast(intent);
         } catch (ActivityNotFoundException e) {
             call.reject("DataWedge is not installed or not running");
         }
@@ -59,10 +56,9 @@ public class DataWedgePlugin extends Plugin {
     @PluginMethod
     public void disableScanner(PluginCall call) {
         Intent intent = implementation.disableScanner();
-        Context context = getBridge().getContext();
 
         try {
-            context.sendBroadcast(intent);
+            broadcast(intent);
         } catch (ActivityNotFoundException e) {
             call.reject("DataWedge is not installed or not running");
         }
@@ -77,6 +73,11 @@ public class DataWedgePlugin extends Plugin {
         }
 
         super.addListener(call);
+    }
+
+    private void broadcast(Intent intent) {
+        Context context = getBridge().getContext();
+        context.sendBroadcast(intent);
     }
 
     private void registerReceiver() { 
