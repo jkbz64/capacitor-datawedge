@@ -38,5 +38,21 @@ public class DataWedge {
 
         return intent;
     }
+
+    public Intent startScanning() {
+        Intent intent = new Intent();
+        intent.setAction(DATAWEDGE_PACKAGE + ".ACTION");
+        intent.putExtra("com.symbol.datawedge.api.SOFT_SCAN_TRIGGER", "START_SCANNING");
+
+        return intent;
+    }
+
+    public Intent stopScanning() {
+        Intent intent = new Intent();
+        intent.setAction(DATAWEDGE_PACKAGE + ".ACTION");
+        intent.putExtra("com.symbol.datawedge.api.SOFT_SCAN_TRIGGER", "STOP_SCANNING");
+
+        return intent;
+        }
 }
 
