@@ -50,6 +50,24 @@ export interface DataWedgePlugin {
   disableScanner(): Promise<void>;
 
   /**
+   * Starts software scanning trigger
+   *
+   * Broadcasts intent action with `.SOFT_SCAN_TRIGGER` extra set to `START_SCANNING`
+   *
+   * @since 0.1.2
+   */
+  startScanning(): Promise<void>;
+
+  /**
+   * Stops software scanning trigger
+   *
+   * Broadcasts intent action with `.SOFT_SCAN_TRIGGER` extra set to `STOP_SCANNING`
+   *
+   * @since 0.1.2
+   */
+  stopScanning(): Promise<void>;
+
+  /**
   * Listen for successful barcode readings
   * 
   * ***Notice:*** Requires intent action to be set to `com.capacitor.datawedge.RESULT_ACTION` in current DataWedge profile (it may change in the future)

@@ -17,6 +17,8 @@ npx cap sync
 * [`disable()`](#disable)
 * [`enableScanner()`](#enablescanner)
 * [`disableScanner()`](#disablescanner)
+* [`startScanning()`](#startscanning)
+* [`stopScanning()`](#stopscanning)
 * [`addListener('scan', ...)`](#addlistenerscan-)
 * [Interfaces](#interfaces)
 * [Type Aliases](#type-aliases)
@@ -86,6 +88,36 @@ Disables physical scanner
 Broadcasts intent action with `.SCANNER_INPUT_PLUGIN` extra set to `DISABLE_PLUGIN`
 
 **Since:** 0.0.3
+
+--------------------
+
+
+### startScanning()
+
+```typescript
+startScanning() => Promise<void>
+```
+
+Starts software scanning trigger
+
+Broadcasts intent action with `.SOFT_SCAN_TRIGGER` extra set to `START_SCANNING`
+
+**Since:** 0.1.2
+
+--------------------
+
+
+### stopScanning()
+
+```typescript
+stopScanning() => Promise<void>
+```
+
+Stops software scanning trigger
+
+Broadcasts intent action with `.SOFT_SCAN_TRIGGER` extra set to `STOP_SCANNING`
+
+**Since:** 0.1.2
 
 --------------------
 

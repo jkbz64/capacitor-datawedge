@@ -65,6 +65,28 @@ public class DataWedgePlugin extends Plugin {
     }
 
     @PluginMethod
+    public void startScanning(PluginCall call) {
+         Intent intent = implementation.startScanning();
+
+         try {
+            broadcast(intent);
+         } catch (ActivityNotFoundException e) {
+            call.reject("DataWedge is not installed or not running");
+         }
+    }
+
+    @PluginMethod
+    public void stopScanning(PluginCall call) {
+        Intent intent = implementation.stopScanning();
+
+        try {
+            broadcast(intent);
+        } catch (ActivityNotFoundException e) {
+            call.reject("DataWedge is not installed or not running");
+        }
+    }
+
+    @PluginMethod
     @Override
     public void addListener(PluginCall call) {
         if (!isReceiverRegistered) {
