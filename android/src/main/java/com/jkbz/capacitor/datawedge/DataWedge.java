@@ -53,6 +53,6 @@ public class DataWedge {
         intent.putExtra("com.symbol.datawedge.api.SOFT_SCAN_TRIGGER", "STOP_SCANNING");
 
         return intent;
-        }
+    }
 }
 

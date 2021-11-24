@@ -18,7 +18,7 @@ npx cap sync
 * [`enableScanner()`](#enablescanner)
 * [`disableScanner()`](#disablescanner)
 * [`startScanning()`](#startscanning)
-* [`disableScanner()`](#stopscanning)
+* [`stopScanning()`](#stopscanning)
 * [`addListener('scan', ...)`](#addlistenerscan-)
 * [Interfaces](#interfaces)
 * [Type Aliases](#type-aliases)

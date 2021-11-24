@@ -72,7 +72,7 @@ export interface DataWedgePlugin {
   * 
   * ***Notice:*** Requires intent action to be set to `com.capacitor.datawedge.RESULT_ACTION` in current DataWedge profile (it may change in the future)
   *
-  * @since 0.1.2
+  * @since 0.1.0
   */
   addListener(
     eventName: 'scan',
