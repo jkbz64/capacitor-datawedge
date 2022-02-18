@@ -9,6 +9,22 @@ npm install capacitor-datawedge
 npx cap sync
 ```
 
+## Usage
+
+Enable intent output in your DataWedge profile, set `Intent delivery` to `Broadcast intent` and set `Intent action` to `com.capacitor.datawedge.RESULT_ACTION`
+
+```js
+import { DataWedge } from 'capacitor-datawedge';
+
+// Register scan listener to receive barcode data
+DataWedge.addListener('scan', event => {
+  console.log(event.data);
+});
+
+// Scanning the barcode using physical trigger should fire up your scan callback!
+// Check API for more methods
+```
+
 ## API
 
 <docgen-index>
