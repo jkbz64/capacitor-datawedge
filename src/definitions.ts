@@ -78,4 +78,13 @@ export interface DataWedgePlugin {
     eventName: 'scan',
     listenerFunc: ScanListener
   ): Promise<PluginListenerHandle> & PluginListenerHandle;
+
+  /**
+   * Internal method to register intent broadcast receiver 
+   * THIS METHOD IS FOR INTERNAL USE ONLY
+   * 
+   * @since 0.1.3
+   * @private
+   */
+  __registerReceiver(): Promise<void>;
 }

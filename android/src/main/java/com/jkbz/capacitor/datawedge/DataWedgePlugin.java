@@ -87,29 +87,22 @@ public class DataWedgePlugin extends Plugin {
     }
 
     @PluginMethod
-    @Override
-    public void addListener(PluginCall call) {
-        if (!isReceiverRegistered) {
-            registerReceiver();
-            isReceiverRegistered = true;
-        }
+    public void __registerReceiver(PluginCall call) { 
+        if (isReceiverRegistered) return;
 
-        super.addListener(call);
+        Context context = getBridge().getContext();
+        try {
+            IntentFilter filter = new IntentFilter(DataWedge.DATAWEDGE_INPUT_FILTER);
+            context.registerReceiver(broadcastReceiver, filter);
+            isReceiverRegistered = true;
+        } catch(Exception e) {
+            Log.d("Capacitor/DataWedge", "Failed to register event receiver");
+        }
     }
 
     private void broadcast(Intent intent) {
         Context context = getBridge().getContext();
         context.sendBroadcast(intent);
-    }
-
-    private void registerReceiver() { 
-        Context context = getBridge().getContext();
-        try {
-            IntentFilter filter = new IntentFilter(DataWedge.DATAWEDGE_INPUT_FILTER);
-            context.registerReceiver(broadcastReceiver, filter);
-        } catch(Exception e) {
-            Log.d("Capacitor/DataWedge", "Failed to register event receiver");
-        }
     }
 
     private boolean isReceiverRegistered = false;

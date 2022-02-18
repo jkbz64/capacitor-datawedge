@@ -20,6 +20,7 @@ npx cap sync
 * [`startScanning()`](#startscanning)
 * [`stopScanning()`](#stopscanning)
 * [`addListener('scan', ...)`](#addlistenerscan-)
+* [`__registerReceiver()`](#__registerreceiver)
 * [Interfaces](#interfaces)
 * [Type Aliases](#type-aliases)
 
@@ -140,6 +141,20 @@ Listen for successful barcode readings
 **Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
 
 **Since:** 0.1.0
+
+--------------------
+
+
+### __registerReceiver()
+
+```typescript
+__registerReceiver() => Promise<void>
+```
+
+Internal method to register intent broadcast receiver 
+THIS METHOD IS FOR INTERNAL USE ONLY
+
+**Since:** 0.1.3
 
 --------------------
 

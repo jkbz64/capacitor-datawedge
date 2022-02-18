@@ -26,4 +26,8 @@ export class DataWedgeWeb extends WebPlugin implements DataWedgePlugin {
   async stopScanning(): Promise<void> {
     throw 'DataWedge is not supported on web';
   }
+
+  async __registerReceiver(): Promise<void> {
+    // no-op
+  }
 }
