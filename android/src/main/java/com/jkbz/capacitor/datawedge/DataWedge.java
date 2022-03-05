@@ -54,5 +54,13 @@ public class DataWedge {
 
         return intent;
     }
+
+    public Intent enumerateScanners(){
+        Intent intent = new Intent();
+        intent.setAction("com.symbol.datawedge.api.ACTION");
+        intent.putExtra("com.symbol.datawedge.api.ENUMERATE_SCANNERS", "");
+
+        return intent;
+    }
 }
 

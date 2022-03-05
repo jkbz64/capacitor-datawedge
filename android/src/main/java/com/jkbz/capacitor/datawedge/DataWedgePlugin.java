@@ -14,6 +14,9 @@ import android.content.BroadcastReceiver;
 import android.content.ActivityNotFoundException;
 
 import android.util.Log;
+import android.os.Bundle;
+
+import java.util.ArrayList;
 
 
 @CapacitorPlugin(name = "DataWedge")
@@ -66,13 +69,13 @@ public class DataWedgePlugin extends Plugin {
 
     @PluginMethod
     public void startScanning(PluginCall call) {
-         Intent intent = implementation.startScanning();
+        Intent intent = implementation.startScanning();
 
-         try {
+        try {
             broadcast(intent);
-         } catch (ActivityNotFoundException e) {
+        } catch (ActivityNotFoundException e) {
             call.reject("DataWedge is not installed or not running");
-         }
+        }
     }
 
     @PluginMethod
@@ -87,7 +90,24 @@ public class DataWedgePlugin extends Plugin {
     }
 
     @PluginMethod
-    public void __registerReceiver(PluginCall call) { 
+    public boolean isScannerAvailable(PluginCall call) {
+        return isDeviceAvailable;
+    }
+
+
+    @PluginMethod
+    public void __enumerateScanners(PluginCall call) {
+        Intent intent = implementation.enumerateScanners();
+
+        try {
+            broadcast(intent);
+        } catch(ActivityNotFoundException e) {
+            call.reject("DataWedge is not installed or not running");
+        }
+    }
+
+    @PluginMethod
+    public void __registerReceiver(PluginCall call) {
         if (isReceiverRegistered) return;
 
         Context context = getBridge().getContext();
@@ -105,6 +125,8 @@ public class DataWedgePlugin extends Plugin {
         context.sendBroadcast(intent);
     }
 
+    private static final String TAG = "MyActivity";
+    public boolean isDeviceAvailable = false;
     private boolean isReceiverRegistered = false;
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -112,6 +134,30 @@ public class DataWedgePlugin extends Plugin {
             String action = intent.getAction();
 
             if (!action.equals(DataWedge.DATAWEDGE_INPUT_FILTER)) return;
+
+            if(action.equals("com.symbol.datawedge.api.RESULT_ACTION")){
+                //
+                // enumerate scanners
+                //
+                if(intent.hasExtra("com.symbol.datawedge.api.RESULT_ENUMERATE_SCANNERS")) {
+                    ArrayList<Bundle> scannerList = (ArrayList<Bundle>) intent.getSerializableExtra("com.symbol.datawedge.api.RESULT_ENUMERATE_SCANNERS");
+                    if((scannerList != null) && (scannerList.size() > 0)) {
+                        for (Bundle bunb : scannerList){
+                            String[] entry = new String[4];
+                            entry[0] = bunb.getString("SCANNER_NAME");
+                            entry[1] = bunb.getBoolean("SCANNER_CONNECTION_STATE")+"";
+                            entry[2] = bunb.getInt("SCANNER_INDEX")+"";
+
+                            entry[3] = bunb.getString("SCANNER_IDENTIFIER");
+
+                            Log.d(TAG, "Scanner:" + entry[0]  + " Connection:" + entry[1] + " Index:" + entry[2] + " ID:" + entry[3]);
+                            if(entry[1] == "true") {
+                                isDeviceAvailable = true;
+                            }
+                        }
+                    }
+                }
+            }
 
             try {
                 String data = intent.getStringExtra("com.symbol.datawedge.data_string");

@@ -35,8 +35,10 @@ DataWedge.addListener('scan', event => {
 * [`disableScanner()`](#disablescanner)
 * [`startScanning()`](#startscanning)
 * [`stopScanning()`](#stopscanning)
+* [`isScannerAvailable()`](#isscanneravailable)
 * [`addListener('scan', ...)`](#addlistenerscan-)
 * [`__registerReceiver()`](#__registerreceiver)
+* [`__enumerateScanners()`](#__enumeratescanners)
 * [Interfaces](#interfaces)
 * [Type Aliases](#type-aliases)
 
@@ -139,6 +141,21 @@ Broadcasts intent action with `.SOFT_SCAN_TRIGGER` extra set to `STOP_SCANNING`
 --------------------
 
 
+### isScannerAvailable()
+
+```typescript
+isScannerAvailable() => Promise<boolean>
+```
+
+Returns boolean if scanner is connected
+
+**Returns:** <code>Promise&lt;boolean&gt;</code>
+
+**Since:** 0.1.3
+
+--------------------
+
+
 ### addListener('scan', ...)
 
 ```typescript
@@ -167,10 +184,24 @@ Listen for successful barcode readings
 __registerReceiver() => Promise<void>
 ```
 
-Internal method to register intent broadcast receiver 
+Internal method to register intent broadcast receiver
 THIS METHOD IS FOR INTERNAL USE ONLY
 
 **Since:** 0.1.3
+
+--------------------
+
+
+### __enumerateScanners()
+
+```typescript
+__enumerateScanners() => Promise<void>
+```
+
+Internal method to enumerate through the receivers
+THIS METHOD IS FOR INTERNAL USE ONLY
+
+**Since:** 0.1.4
 
 --------------------
 
