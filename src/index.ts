@@ -8,6 +8,7 @@ const DataWedge = registerPlugin<DataWedgePlugin>('DataWedge', {
 
 if (Capacitor.isNativePlatform()) {
   DataWedge.__registerReceiver();
+  DataWedge.__enumerateScanners();
 }
 
 export * from './definitions';
