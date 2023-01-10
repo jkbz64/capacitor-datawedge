@@ -13,6 +13,8 @@ npm install capacitor-datawedge
 npx cap sync
 ```
 
+The last supported verison for Capacitor v3 is `capacitor-datawedge@0.1.3`
+
 ## Usage
 
 Enable intent output in your DataWedge profile, set `Intent delivery` to `Broadcast intent` and set `Intent action` to `com.capacitor.datawedge.RESULT_ACTION`
