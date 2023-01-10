@@ -13,7 +13,7 @@ npm install capacitor-datawedge
 npx cap sync
 ```
 
-The last supported verison for Capacitor v3 is `capacitor-datawedge@0.1.3`
+The last supported version for Capacitor v3 is `capacitor-datawedge@0.1.3`
 
 ## Usage
 
@@ -174,6 +174,7 @@ __registerReceiver() => Promise<void>
 ```
 
 Internal method to register intent broadcast receiver 
+
 THIS METHOD IS FOR INTERNAL USE ONLY
 
 **Since:** 0.1.3

@@ -81,6 +81,7 @@ export interface DataWedgePlugin {
 
   /**
    * Internal method to register intent broadcast receiver 
+   *
    * THIS METHOD IS FOR INTERNAL USE ONLY
    * 
    * @since 0.1.3
