@@ -1,4 +1,9 @@
-# Capacitor Datawedge - community maintained plugin
+# Capacitor DataWedge - community maintained plugin
+
+![version](https://img.shields.io/npm/v/capacitor-datawedge)
+![downloads](https://img.shields.io/npm/dm/capacitor-datawedge)
+![contributors](https://img.shields.io/github/contributors/jkbz64/capacitor-datawedge)
+![license](https://img.shields.io/npm/l/capacitor-datawedge)
 
 This plugin allows you to simply gain access to receiving barcode data and use some api methods from the DataWedge API designed for Capacitor with Zebra devices.
 
@@ -213,7 +218,7 @@ THIS METHOD IS FOR INTERNAL USE ONLY
 **BSD-3-Clause**
 
 ```
-Copyright (c) 2021, jkbz64
+Copyright (c) 2021-2023, jkbz64 and contributors
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
