@@ -115,9 +115,11 @@ public class DataWedgePlugin extends Plugin {
 
             try {
                 String data = intent.getStringExtra("com.symbol.datawedge.data_string");
+                String type = intent.getStringExtra("com.symbol.datawedge.label_type");
 
                 JSObject ret = new JSObject();
                 ret.put("data", data);
+                ret.put("type", type);
 
                 notifyListeners("scan", ret);
             } catch(Exception e) {}
