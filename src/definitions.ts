@@ -7,6 +7,11 @@ export interface ScanListenerEvent {
    * @since 0.1.0
    */
   data: string;
+
+  /**
+   * Type of barcode
+   */
+  type: string | null;
 }
 
 export type ScanListener = (state: ScanListenerEvent) => void;
