@@ -10,6 +10,8 @@ export interface ScanListenerEvent {
 
   /**
    * Type of barcode
+   *
+   * @since 0.2.1
    */
   type: string | null;
 }

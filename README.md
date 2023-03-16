@@ -202,7 +202,7 @@ THIS METHOD IS FOR INTERNAL USE ONLY
 | Prop       | Type                        | Description     | Since |
 | ---------- | --------------------------- | --------------- | ----- |
 | **`data`** | <code>string</code>         | Data of barcode | 0.1.0 |
-| **`type`** | <code>string \| null</code> | Type of barcode |       |
+| **`type`** | <code>string \| null</code> | Type of barcode | 0.2.1 |
 
 
 ### Type Aliases
