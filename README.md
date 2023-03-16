@@ -46,7 +46,7 @@ DataWedge.addListener('scan', event => {
 * [`disableScanner()`](#disablescanner)
 * [`startScanning()`](#startscanning)
 * [`stopScanning()`](#stopscanning)
-* [`addListener('scan', ...)`](#addlistenerscan-)
+* [`addListener('scan', ...)`](#addlistenerscan)
 * [`__registerReceiver()`](#__registerreceiver)
 * [Interfaces](#interfaces)
 * [Type Aliases](#type-aliases)
@@ -199,9 +199,10 @@ THIS METHOD IS FOR INTERNAL USE ONLY
 
 #### ScanListenerEvent
 
-| Prop       | Type                | Description     | Since |
-| ---------- | ------------------- | --------------- | ----- |
-| **`data`** | <code>string</code> | Data of barcode | 0.1.0 |
+| Prop       | Type                        | Description     | Since |
+| ---------- | --------------------------- | --------------- | ----- |
+| **`data`** | <code>string</code>         | Data of barcode | 0.1.0 |
+| **`type`** | <code>string \| null</code> | Type of barcode |       |
 
 
 ### Type Aliases
