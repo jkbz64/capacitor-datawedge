@@ -46,7 +46,7 @@ DataWedge.addListener('scan', event => {
 * [`disableScanner()`](#disablescanner)
 * [`startScanning()`](#startscanning)
 * [`stopScanning()`](#stopscanning)
-* [`addListener('scan', ...)`](#addlistenerscan-)
+* [`addListener('scan', ...)`](#addlistenerscan)
 * [`__registerReceiver()`](#__registerreceiver)
 * [Interfaces](#interfaces)
 * [Type Aliases](#type-aliases)
