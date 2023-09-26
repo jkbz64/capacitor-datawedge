@@ -19,6 +19,7 @@ npx cap sync
 ```
 
 The last supported version for Capacitor v3 is `capacitor-datawedge@0.1.3`
+The last supported version for Capacitor v4 is `capacitor-datawedge@0.2.1`
 
 ## Usage
 
@@ -46,7 +47,7 @@ DataWedge.addListener('scan', event => {
 * [`disableScanner()`](#disablescanner)
 * [`startScanning()`](#startscanning)
 * [`stopScanning()`](#stopscanning)
-* [`addListener('scan', ...)`](#addlistenerscan-)
+* [`addListener('scan', ...)`](#addlistenerscan)
 * [`__registerReceiver()`](#__registerreceiver)
 * [Interfaces](#interfaces)
 * [Type Aliases](#type-aliases)
