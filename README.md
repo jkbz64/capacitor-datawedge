@@ -50,7 +50,10 @@ DataWedge.addListener('scan', event => {
 * [`disableScanner()`](#disablescanner)
 * [`startScanning()`](#startscanning)
 * [`stopScanning()`](#stopscanning)
-* [`addListener('scan', ...)`](#addlistenerscan)
+* [`registerBroadcastReceiver(...)`](#registerbroadcastreceiver)
+* [`sendBroadcastWithExtras(...)`](#sendbroadcastwithextras)
+* [`addListener('scan' | 'broadcast', ...)`](#addlistenerscan--broadcast)
+* [`removeAllListeners()`](#removealllisteners)
 * [`__registerReceiver()`](#__registerreceiver)
 * [Interfaces](#interfaces)
 * [Type Aliases](#type-aliases)
@@ -154,24 +157,71 @@ Broadcasts intent action with `.SOFT_SCAN_TRIGGER` extra set to `STOP_SCANNING`
 --------------------
 
 
-### addListener('scan', ...)
+### registerBroadcastReceiver(...)
 
 ```typescript
-addListener(eventName: 'scan', listenerFunc: ScanListener) => Promise<PluginListenerHandle> & PluginListenerHandle
+registerBroadcastReceiver(filter: BroadcastReceiverFilter) => Promise<void>
+```
+
+Register broadcast receiver
+
+| Param        | Type                                                                        |
+| ------------ | --------------------------------------------------------------------------- |
+| **`filter`** | <code><a href="#broadcastreceiverfilter">BroadcastReceiverFilter</a></code> |
+
+**Since:** 0.3.0
+
+--------------------
+
+
+### sendBroadcastWithExtras(...)
+
+```typescript
+sendBroadcastWithExtras(intent: BroadcastIntent) => Promise<void>
+```
+
+Send broadcast with extras
+
+| Param        | Type                                                        |
+| ------------ | ----------------------------------------------------------- |
+| **`intent`** | <code><a href="#broadcastintent">BroadcastIntent</a></code> |
+
+**Since:** 0.3.0
+
+--------------------
+
+
+### addListener('scan' | 'broadcast', ...)
+
+```typescript
+addListener(eventName: 'scan' | 'broadcast', listenerFunc: ScanListener | BroadcastListener) => Promise<PluginListenerHandle> & PluginListenerHandle
 ```
 
 Listen for successful barcode readings
 
 ***Notice:*** Requires intent action to be set to `com.capacitor.datawedge.RESULT_ACTION` in current DataWedge profile (it may change in the future)
 
-| Param              | Type                                                  |
-| ------------------ | ----------------------------------------------------- |
-| **`eventName`**    | <code>'scan'</code>                                   |
-| **`listenerFunc`** | <code><a href="#scanlistener">ScanListener</a></code> |
+| Param              | Type                                                                                                        |
+| ------------------ | ----------------------------------------------------------------------------------------------------------- |
+| **`eventName`**    | <code>'scan' \| 'broadcast'</code>                                                                          |
+| **`listenerFunc`** | <code><a href="#scanlistener">ScanListener</a> \| <a href="#broadcastlistener">BroadcastListener</a></code> |
 
 **Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
 
 **Since:** 0.1.0
+
+--------------------
+
+
+### removeAllListeners()
+
+```typescript
+removeAllListeners() => Promise<void>
+```
+
+Remove all listeners
+
+**Since:** 0.3.0
 
 --------------------
 
@@ -182,7 +232,7 @@ Listen for successful barcode readings
 __registerReceiver() => Promise<void>
 ```
 
-Internal method to register intent broadcast receiver 
+Internal method to register intent broadcast receiver
 
 THIS METHOD IS FOR INTERNAL USE ONLY
 
@@ -212,9 +262,29 @@ THIS METHOD IS FOR INTERNAL USE ONLY
 ### Type Aliases
 
 
+#### BroadcastReceiverFilter
+
+<code>{ filterActions: string[]; filterCategories: string[]; }</code>
+
+
+#### BroadcastIntent
+
+<code>{ action: string; extras: <a href="#jsonobject">JsonObject</a>; }</code>
+
+
+#### JsonObject
+
+<code>{ [key: string]: | string | number | boolean | <a href="#jsonobject">JsonObject</a> | string[] | number[] | boolean[] | JsonObject[]; }</code>
+
+
 #### ScanListener
 
 <code>(state: <a href="#scanlistenerevent">ScanListenerEvent</a>): void</code>
+
+
+#### BroadcastListener
+
+<code>(state: <a href="#jsonobject">JsonObject</a>): void</code>
 
 </docgen-api>
 

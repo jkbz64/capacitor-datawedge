@@ -1,9 +1,7 @@
 package com.jkbz.capacitor.datawedge;
 
-import com.getcapacitor.Plugin;
-import com.getcapacitor.JSObject;
-import com.getcapacitor.PluginCall;
-import com.getcapacitor.PluginMethod;
+import android.os.Bundle;
+import com.getcapacitor.*;
 import com.getcapacitor.annotation.ActivityCallback;
 import com.getcapacitor.annotation.CapacitorPlugin;
 
@@ -14,6 +12,11 @@ import android.content.BroadcastReceiver;
 import android.content.ActivityNotFoundException;
 
 import android.util.Log;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Arrays;
+import java.util.Iterator;
 
 
 @CapacitorPlugin(name = "DataWedge")
@@ -87,7 +90,31 @@ public class DataWedgePlugin extends Plugin {
     }
 
     @PluginMethod
-    public void __registerReceiver(PluginCall call) { 
+    public void sendBroadcastWithExtras(PluginCall call) throws JSONException {
+        try {
+            String action = call.getString("action");
+            Intent intent = new Intent();
+
+            if (action != null) {
+                intent.setAction(action);
+            }
+
+            JSObject extrasObject = call.getObject("extras");
+
+            if (extrasObject != null) {
+                Bundle extrasBundle = DataWedge.toBundle(extrasObject);
+                intent.putExtras(extrasBundle);
+            }
+
+            getContext().sendBroadcast(intent);
+            call.resolve();
+        } catch (Exception e) {
+            call.reject(e.getMessage());
+        }
+    }
+
+    @PluginMethod
+    public void __registerReceiver(PluginCall call) {
         if (isReceiverRegistered) return;
 
         Context context = getBridge().getContext();
@@ -125,4 +152,73 @@ public class DataWedgePlugin extends Plugin {
             } catch(Exception e) {}
         }
     };
+    @PluginMethod
+    public void registerBroadcastReceiver(PluginCall call) throws JSONException {
+        try {
+            // Unregister any existing receiver to avoid conflicts
+            unregisterReceiver(genericReceiver);
+
+            // Create an IntentFilter to specify which broadcasts to listen for
+            IntentFilter filter = new IntentFilter();
+
+            if (call.hasOption("filterActions")) {
+                JSArray filterActions = call.getArray("filterActions");
+                if (filterActions != null) {
+                    for (int i = 0; i < filterActions.length(); i++) {
+                        filter.addAction(filterActions.getString(i));
+                    }
+                }
+            }
+
+            if (call.hasOption("filterCategories")) {
+                JSArray filterCategories = call.getArray("filterCategories");
+                if (filterCategories != null) {
+                    for (int i = 0; i < filterCategories.length(); i++) {
+                        filter.addCategory(filterCategories.getString(i));
+                    }
+                }
+            }
+
+            // Register the broadcast receiver with the specified filter
+            getContext().registerReceiver(genericReceiver, filter);
+
+            // Resolve the plugin call
+            call.resolve();
+        } catch (Exception e) {
+            call.reject(e.getMessage());
+        }
+    }
+
+    private final BroadcastReceiver genericReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+
+            JSObject ret = new JSObject();
+            ret.put("action", action);
+
+            // Check if extras is null before attempting to get keys
+            JSObject extras = new JSObject();
+            if (intent.getExtras() != null) {
+                extras = DataWedge.bundleToJSObject(intent.getExtras());
+            }
+
+            ret.put("extras", extras);
+
+            notifyListeners("broadcast", ret);
+        }
+
+    };
+
+
+    private void unregisterReceiver(BroadcastReceiver receiver) {
+        try
+        {
+            getContext().unregisterReceiver(receiver);
+        }
+        catch (IllegalArgumentException e)
+        {
+            Log.e("Capacitor/DataWedge", e.getMessage());
+        }
+    }
 }
