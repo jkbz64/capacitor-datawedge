@@ -21,6 +21,9 @@ public class DataWedgePlugin extends Plugin {
 
     private final DataWedge implementation = new DataWedge();
 
+    // This is the default and can be changed when re-registering
+    private String scanIntent = "com.capacitor.datawedge.RESULT_ACTION";
+
     @PluginMethod
     public void enable(PluginCall call) {
         Intent intent = implementation.enable();
@@ -88,11 +91,17 @@ public class DataWedgePlugin extends Plugin {
 
     @PluginMethod
     public void __registerReceiver(PluginCall call) { 
-        if (isReceiverRegistered) return;
-
         Context context = getBridge().getContext();
+
+        if (isReceiverRegistered) {
+          context.unregisterReceiver(broadcastReceiver);
+        }
+
+        final String intentName = call.getString("intent");
+        if (intentName != null) this.scanIntent = intentName;
+
         try {
-            IntentFilter filter = new IntentFilter(DataWedge.DATAWEDGE_INPUT_FILTER);
+            IntentFilter filter = new IntentFilter(this.scanIntent);
             context.registerReceiver(broadcastReceiver, filter);
             isReceiverRegistered = true;
         } catch(Exception e) {
@@ -111,7 +120,7 @@ public class DataWedgePlugin extends Plugin {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
 
-            if (!action.equals(DataWedge.DATAWEDGE_INPUT_FILTER)) return;
+            if (!action.equals(this.scanIntent)) return;
 
             try {
                 String data = intent.getStringExtra("com.symbol.datawedge.data_string");

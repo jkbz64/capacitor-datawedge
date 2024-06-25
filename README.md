@@ -51,7 +51,7 @@ DataWedge.addListener('scan', event => {
 * [`startScanning()`](#startscanning)
 * [`stopScanning()`](#stopscanning)
 * [`addListener('scan', ...)`](#addlistenerscan)
-* [`__registerReceiver()`](#__registerreceiver)
+* [`__registerReceiver(...)`](#__registerreceiver)
 * [Interfaces](#interfaces)
 * [Type Aliases](#type-aliases)
 
@@ -176,15 +176,19 @@ Listen for successful barcode readings
 --------------------
 
 
-### __registerReceiver()
+### __registerReceiver(...)
 
 ```typescript
-__registerReceiver() => Promise<void>
+__registerReceiver(options?: RegisterOptions | undefined) => Promise<void>
 ```
 
 Internal method to register intent broadcast receiver 
 
 THIS METHOD IS FOR INTERNAL USE ONLY
+
+| Param         | Type                                                        |
+| ------------- | ----------------------------------------------------------- |
+| **`options`** | <code><a href="#registeroptions">RegisterOptions</a></code> |
 
 **Since:** 0.1.3
 
@@ -215,6 +219,11 @@ THIS METHOD IS FOR INTERNAL USE ONLY
 #### ScanListener
 
 <code>(state: <a href="#scanlistenerevent">ScanListenerEvent</a>): void</code>
+
+
+#### RegisterOptions
+
+<code>{ /** * Intent action name to listen for * * @since 0.3.1 */ intent?: string; }</code>
 
 </docgen-api>
 

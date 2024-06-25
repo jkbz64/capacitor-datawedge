@@ -18,6 +18,15 @@ export interface ScanListenerEvent {
 
 export type ScanListener = (state: ScanListenerEvent) => void;
 
+export type RegisterOptions = {
+  /**
+   * Intent action name to listen for
+   * 
+   * @since 0.3.1
+   */
+  intent?: string;
+};
+
 export interface DataWedgePlugin {
 
   /**
@@ -94,5 +103,5 @@ export interface DataWedgePlugin {
    * @since 0.1.3
    * @private
    */
-  __registerReceiver(): Promise<void>;
+  __registerReceiver(options?: RegisterOptions): Promise<void>;
 }
