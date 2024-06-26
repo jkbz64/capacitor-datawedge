@@ -120,7 +120,7 @@ public class DataWedgePlugin extends Plugin {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
 
-            if (!action.equals(this.scanIntent)) return;
+            if (!action.equals(scanIntent)) return;
 
             try {
                 String data = intent.getStringExtra("com.symbol.datawedge.data_string");
