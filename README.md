@@ -31,7 +31,7 @@ Enable intent output in your DataWedge profile, set `Intent delivery` to `Broadc
 ```js
 import { DataWedge } from 'capacitor-datawedge';
 
-// Optional: in case you want to use yout custom intent action instead
+// Optional: in case you want to use your custom intent action instead
 // DataWedge.__registerReceiver({ intent: "my.custom.action" });
 
 // Register scan listener to receive barcode data
