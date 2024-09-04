@@ -1,7 +1,7 @@
 # Capacitor DataWedge - community maintained plugin
 
-![capacitor-version](https://img.shields.io/badge/Capacitor-v5-lightgreen)
-![capacitor-version](https://img.shields.io/badge/Capacitor-v3--v4-orange)
+![capacitor-version](https://img.shields.io/badge/Capacitor-v6-lightgreen)
+![capacitor-version](https://img.shields.io/badge/Capacitor-v3--v5-orange)
 ![version](https://img.shields.io/npm/v/capacitor-datawedge)
 ![downloads](https://img.shields.io/npm/dm/capacitor-datawedge)
 ![contributors](https://img.shields.io/github/contributors/jkbz64/capacitor-datawedge)
