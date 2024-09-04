@@ -24,6 +24,8 @@ The last supported version for Capacitor v3 is `capacitor-datawedge@0.1.3`
 
 The last supported version for Capacitor v4 is `capacitor-datawedge@0.2.1`
 
+The last supported version for Capacitor v5 is `capacitor-datawedge@0.3.1`
+
 ## Usage
 
 Enable intent output in your DataWedge profile, set `Intent delivery` to `Broadcast intent` and set `Intent action` to `com.capacitor.datawedge.RESULT_ACTION`
