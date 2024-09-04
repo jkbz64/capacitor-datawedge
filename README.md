@@ -162,7 +162,7 @@ Broadcasts intent action with `.SOFT_SCAN_TRIGGER` extra set to `STOP_SCANNING`
 ### addListener('scan', ...)
 
 ```typescript
-addListener(eventName: 'scan', listenerFunc: ScanListener) => Promise<PluginListenerHandle> & PluginListenerHandle
+addListener(eventName: 'scan', listenerFunc: ScanListener) => Promise<PluginListenerHandle>
 ```
 
 Listen for successful barcode readings
@@ -174,7 +174,7 @@ Listen for successful barcode readings
 | **`eventName`**    | <code>'scan'</code>                                   |
 | **`listenerFunc`** | <code><a href="#scanlistener">ScanListener</a></code> |
 
-**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
+**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt;</code>
 
 **Since:** 0.1.0
 
@@ -187,7 +187,7 @@ Listen for successful barcode readings
 __registerReceiver(options?: RegisterOptions | undefined) => Promise<void>
 ```
 
-Internal method to register intent broadcast receiver 
+Internal method to register intent broadcast receiver
 
 THIS METHOD IS FOR INTERNAL USE ONLY
 
