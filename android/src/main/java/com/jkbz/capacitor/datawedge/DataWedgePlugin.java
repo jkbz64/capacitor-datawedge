@@ -7,11 +7,15 @@ import com.getcapacitor.PluginMethod;
 import com.getcapacitor.annotation.ActivityCallback;
 import com.getcapacitor.annotation.CapacitorPlugin;
 
+import static android.content.Context.RECEIVER_EXPORTED;
+
 import android.content.Intent;
 import android.content.Context;
 import android.content.IntentFilter;
 import android.content.BroadcastReceiver;
 import android.content.ActivityNotFoundException;
+
+import android.os.Build;
 
 import android.util.Log;
 
@@ -102,7 +106,13 @@ public class DataWedgePlugin extends Plugin {
 
         try {
             IntentFilter filter = new IntentFilter(this.scanIntent);
-            context.registerReceiver(broadcastReceiver, filter);
+            
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+              context.registerReceiver(broadcastReceiver, filter, RECEIVER_EXPORTED);
+            } else {
+              context.registerReceiver(broadcastReceiver, filter);
+            }
+
             isReceiverRegistered = true;
         } catch(Exception e) {
             Log.d("Capacitor/DataWedge", "Failed to register event receiver");
