@@ -58,6 +58,7 @@ DataWedge.addListener('scan', event => {
 * [`startScanning()`](#startscanning)
 * [`stopScanning()`](#stopscanning)
 * [`addListener('scan', ...)`](#addlistenerscan-)
+* [`removeListeners()`](#removelisteners)
 * [`__registerReceiver(...)`](#__registerreceiver)
 * [Interfaces](#interfaces)
 * [Type Aliases](#type-aliases)
@@ -179,6 +180,21 @@ Listen for successful barcode readings
 **Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt;</code>
 
 **Since:** 0.1.0
+
+--------------------
+
+
+### removeListeners()
+
+```typescript
+removeListeners() => Promise<void>
+```
+
+Remove Listener for barcode readings
+
+***Notice:*** Requires intent action to be set to `com.capacitor.datawedge.RESULT_ACTION` in current DataWedge profile (it may change in the future)
+
+**Since:** 0.3.6
 
 --------------------
 

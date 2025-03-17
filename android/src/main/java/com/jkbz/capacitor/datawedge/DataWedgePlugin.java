@@ -73,13 +73,13 @@ public class DataWedgePlugin extends Plugin {
 
     @PluginMethod
     public void startScanning(PluginCall call) {
-         Intent intent = implementation.startScanning();
+        Intent intent = implementation.startScanning();
 
-         try {
+        try {
             broadcast(intent);
-         } catch (ActivityNotFoundException e) {
+        } catch (ActivityNotFoundException e) {
             call.reject("DataWedge is not installed or not running");
-         }
+        }
     }
 
     @PluginMethod
@@ -98,7 +98,7 @@ public class DataWedgePlugin extends Plugin {
         Context context = getBridge().getContext();
 
         if (isReceiverRegistered) {
-          context.unregisterReceiver(broadcastReceiver);
+            context.unregisterReceiver(broadcastReceiver);
         }
 
         final String intentName = call.getString("intent");
@@ -108,15 +108,21 @@ public class DataWedgePlugin extends Plugin {
             IntentFilter filter = new IntentFilter(this.scanIntent);
             
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-              context.registerReceiver(broadcastReceiver, filter, RECEIVER_EXPORTED);
+                context.registerReceiver(broadcastReceiver, filter, RECEIVER_EXPORTED);
             } else {
-              context.registerReceiver(broadcastReceiver, filter);
+                context.registerReceiver(broadcastReceiver, filter);
             }
 
             isReceiverRegistered = true;
         } catch(Exception e) {
             Log.d("Capacitor/DataWedge", "Failed to register event receiver");
         }
+    }
+
+    @PluginMethod
+    public void removeAllListeners() {
+        Context context = getBridge().getContext();
+        context.unregisterReceiver(broadcastReceiver);
     }
 
     private void broadcast(Intent intent) {

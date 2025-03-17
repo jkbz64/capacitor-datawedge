@@ -27,6 +27,10 @@ export class DataWedgeWeb extends WebPlugin implements DataWedgePlugin {
     throw 'DataWedge is not supported on web';
   }
 
+  async removeListeners(): Promise<void> {
+    throw 'DataWedge is not supported on web';
+  }
+
   async __registerReceiver(): Promise<void> {
     // no-op
   }

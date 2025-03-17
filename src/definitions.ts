@@ -94,6 +94,15 @@ export interface DataWedgePlugin {
     listenerFunc: ScanListener,
   ): Promise<PluginListenerHandle>;
 
+    /**
+   * Remove Listener for barcode readings
+   *
+   * ***Notice:*** Requires intent action to be set to `com.capacitor.datawedge.RESULT_ACTION` in current DataWedge profile (it may change in the future)
+   *
+   * @since 0.3.6
+   */
+  removeListeners(): Promise<void>;
+
   /**
    * Internal method to register intent broadcast receiver
    *
