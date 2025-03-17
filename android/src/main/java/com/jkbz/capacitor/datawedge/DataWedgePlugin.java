@@ -120,7 +120,7 @@ public class DataWedgePlugin extends Plugin {
     }
 
     @PluginMethod
-    public void removeAllListeners() {
+    public void removeListeners() {
         Context context = getBridge().getContext();
         context.unregisterReceiver(broadcastReceiver);
     }
