@@ -1,6 +1,5 @@
-> I no longer maintain this library as I've fully moved on to using TWA's, please fork it or look for alternatives.
-
-> I am willing to pass on the npm `capacitor-datawedge` package name, please contact me if you're interested.
+> [!WARNING]
+> I no longer maintain this library as I've fully moved on to using TWA's, please fork it or look for alternatives. I am willing to pass on the npm `capacitor-datawedge` package name to the right person, please contact me if you're interested.
 
 # Capacitor DataWedge - community maintained plugin
 ![capacitor-version](https://img.shields.io/badge/Capacitor-v7-lightgreen)
